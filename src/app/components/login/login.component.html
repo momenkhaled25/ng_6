@@ -1,0 +1,12 @@
+<div class="m-5">
+  <button
+    class="btn btn-primary me-4"
+    (click)="login()"
+    [disabled]="isUserLogin"
+  >
+    login
+  </button>
+  <button class="btn btn-success" (click)="logout()" [disabled]="!isUserLogin">
+    logout
+  </button>
+</div>

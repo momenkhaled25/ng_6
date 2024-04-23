@@ -1,0 +1,66 @@
+
+
+<div class="row row-cols-1 row-cols-md-3 g-4 my-3">  
+    @for(prod of filteredProducts;track prod.id){
+    <!-- <ng-container *ngFor="let prod of products ; TrackBy:trackItem"> -->
+            <!--class binding => [class.(class name)] = "condition"-->
+            <!-- [class.hidden] = " prod.catId != selectedCategory && selectedCategory != 0 " -->
+            <div class="col"  *ngIf="prod.quantity != 0">
+            <div class="card h-100" appCardProduct="#f3f3f3" externalColor = "yellow">
+                <img [src]="prod.imgUrl" hoverImg class="card-img-top" alt="...">
+                <!--style binding => [style.(property)] = "condition? "True":"false"-->
+                <!-- [style.background-color] = "prod.quantity == 0 ? 'red' : 'white'" -->
+                <div class="card-body"
+                >
+                <h5 class="card-title">{{prod.name}}</h5>
+                <p class="card-text">Price : {{prod.price | currency:'EUR'}}</p>
+    
+                <!-- <p class="card-text" *ngIf="prod.quantity!=1 ;else lastItem">Quantitiy : {{prod.quantity}}</p>
+                <ng-template #lastItem>
+                    <p class="card-text">Quantitiy : Last Item</p>
+                </ng-template> -->
+    
+                <!--ngSwitch-->
+                <!-- <div [ngSwitch]="prod.quantity">
+                    <p *ngSwitchCase="1">Quantity : last Item</p>
+                    <p *ngSwitchCase="2">Quantity : last 2 Item</p>
+                    <p *ngSwitchDefault="3">{{prod.quantity}}</p>
+                </div> -->
+
+                @switch (prod.quantity) { 
+                    @case(1){
+                        <p>Quantity : last Item</p>
+                    }
+                    @case(2){
+                        <p>Quantity : last 2 Item</p>
+                    }
+                    @default{
+                        <p>{{prod.quantity}}</p>
+                    }
+                }
+    
+                <!--template variable , refrence-->
+                <!-- <input type="number" #countInp/>
+                <button class="btn btn-primary" (click)="getOrder(countInp.value , prod) ">Buy</button> -->
+
+                <!-- <button class="btn btn-success" routerLink="/details">Detalis</button> -->
+                <!-- <button class="btn btn-success" [routerLink]=["/details",prod.id]>Detalis</button> -->
+                <button class="btn btn-success" (click)="navigateToDetalis(prod.id)">Detalis</button>
+                </div>
+            </div>
+            </div>
+       <!-- </ng-container>  -->
+    }@empty{
+        <h1>No product Found</h1>
+    }
+
+</div>
+
+
+<!-- <h2>{{num | test:2}}</h2> -->
+<h2>year:{{NationalId | natinalId:'YY'}}</h2>
+<h2>Month:{{NationalId | natinalId:'MM'}}</h2>
+<h2>day:{{NationalId | natinalId:'DD'}}</h2>
+<h2>fulldate:{{NationalId | natinalId:'FullDate'}}</h2>
+
+<h2>creditCard:{{creditCardNumber|creditCard}}</h2>

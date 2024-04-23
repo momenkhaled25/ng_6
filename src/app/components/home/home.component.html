@@ -1,0 +1,16 @@
+<div class="w-25">
+  <h2>HI , BRO</h2>
+  <div *ngFor="let notification of notifications; let i = index" class="m-5">
+    <div class="alert alert-success" role="alert">
+      <span class="">{{ notification }}</span>
+      <button type="button" class="btn btn-success mt-2 me-2">View</button>
+      <button
+        type="button"
+        class="btn btn-danger mt-2"
+        (click)="closeNotification(i)"
+      >
+        Delete
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,85 @@
+<h1>
+  {{ prodName.errors | json }}
+</h1>
+
+<form
+  (submit)="addNewProduct()"
+  class="m-5"
+  enctype="multipart/form-data"
+  #addProdForm="ngForm"
+>
+  <div class="mb-3">
+    <label for="exampleInputProduct" class="form-label">ProductName</label>
+    <input
+      [(ngModel)]="newProduct.name"
+      type="text"
+      class="form-control"
+      id="exampleInputProduct"
+      name="name"
+      required
+      pattern="^[a-zA-Z]{3,15}$"
+      #prodName="ngModel"
+    />
+    <div *ngIf="prodName.invalid && prodName.touched" class="text-danger">
+      @if(prodName.errors?.['required']) {
+      <p>Name is required</p>
+      } @if(prodName.errors?.['pattern']) {
+      <p>Name must be at least 3 characters</p>
+      }
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="examplePrice" class="form-label">price</label>
+    <input
+      [(ngModel)]="newProduct.price"
+      type="number"
+      class="form-control"
+      id="examplePrice"
+      name="price"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="exampleQuantitiy" class="form-label">Quantitiy</label>
+    <input
+      [(ngModel)]="newProduct.quantity"
+      type="number"
+      class="form-control"
+      id="exampleQuantitiy"
+      name="quantity"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="exampleImage" class="form-label">Image:</label>
+    <input
+      [(ngModel)]="newProduct.imgUrl"
+      type="file"
+      class="form-control"
+      id="exampleImage"
+      name="imgUrl"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="" class="form-label">CategoryId:</label>
+    <select
+      [(ngModel)]="newProduct.catId"
+      class="form-select form-select-lg"
+      name="imgUrl"
+    >
+      @for (cate of categories; track cate.id) {
+      <option [value]="cate.id">{{ cate.name }}</option>
+      }
+    </select>
+  </div>
+
+  <button
+    type="submit"
+    class="btn btn-primary"
+    [disabled]="addProdForm.invalid"
+  >
+    Submit
+  </button>
+</form>

@@ -1,0 +1,21 @@
+<img [src]="product?.imgUrl" />
+<h1>{{ product?.name }}</h1>
+<h2>{{ product?.price }}</h2>
+<a class="btn btn-success" (click)="goBack()">Back</a>
+
+<div class="mt-3 mb-4">
+  <button
+    class="btn btn-primary me-2"
+    (click)="next()"
+    [disabled]="currentId == arrIds[arrIds.length - 1]"
+  >
+    Next
+  </button>
+  <button
+    class="btn btn-danger"
+    (click)="previous()"
+    [disabled]="currentId == arrIds[0]"
+  >
+    Previous
+  </button>
+</div>

@@ -1,0 +1,41 @@
+<div class="my-3">
+    <select class="form-select"  [(ngModel)] = "selectedCategory">
+        <option selected value="0" >Open this select menu</option>
+        <option *ngFor="let cat of categorys" [value]="cat.id">{{cat.name}}</option>
+    </select>
+</div>
+
+<!-- (countOrder) = "updateOrderCount($event)" -->
+                                                       <!-- //4-listener event -->
+<app-products  [receivedCateId] = "selectedCategory" 
+(productRow) = "showProductAndcalcPrice($any($event))"
+
+
+></app-products>
+
+<h3>{{totalPrice}}</h3>
+
+<!-- <table class="table"  [class.d-none] = "products.length == 0">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">name</th>
+        <th scope="col">total price</th>
+        <th scope="col">count</th>
+        <th scope="col">remove</th>
+      </tr>
+    </thead>
+    <tbody>
+    @for(prd of products;track prd.id){
+        <tr>
+            <th scope="row">{{prd.id}}</th>
+            <td>{{prd.name}}</td>
+            <td>{{prd.price * prd.productCount}}</td>
+            <td>{{prd.productCount}}</td>
+            <td><button (click)="remove(prd)">remove</button></td>
+        </tr>
+    }
+    </tbody>
+  </table> -->
+
+  <input type="text" #userNameInput/>
